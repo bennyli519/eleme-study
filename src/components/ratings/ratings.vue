@@ -1,12 +1,12 @@
 <!--
-Description 头部组件
+Description
 @authors Your Name (you@example.org)
-@date    2017-11-12 16:14:39
+@date    2017-11-13 00:02:31
 @version 1.0.0
 -->
 <template>
   <div>
-    我是hEADER!
+    i'am ratings
   </div>
 </template>
 

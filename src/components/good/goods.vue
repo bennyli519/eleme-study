@@ -1,17 +1,19 @@
 <!--
-Description 头部组件
+Description
 @authors Your Name (you@example.org)
-@date    2017-11-12 16:14:39
+@date    2017-11-12 23:58:55
 @version 1.0.0
 -->
 <template>
   <div>
-    我是hEADER!
+    good
   </div>
 </template>
 
 <script>
-  export default {}
+  export default {
+
+  }
 </script>
 
 <style lang="css">
