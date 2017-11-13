@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <ele-header></ele-header>
+    <ele-header :seller="seller"></ele-header>
     <div class="tab border-1px">
       <div class="tab-item">
         <router-link to="/goods">商品</router-link>
@@ -18,8 +18,23 @@
 
 <script>
 import eleHeader from './components/header/header'
+const ERR_OK = 0
 export default {
   name: 'app',
+  data() {
+    return {
+      seller: {}
+    }
+  },
+  created() {
+    this.$http.get('/api/seller').then((response) => {
+      response = response.body
+      if(response.errno == ERR_OK){
+        this.seller = response.data
+        console.log(this.seller)
+      }
+    })
+  },
   components:{
     eleHeader
   }
