@@ -35,19 +35,24 @@ Description
                       <span class="now">￥{{food.price}}</span>
                       <span v-show="food.oldPrice" class="old">￥{{food.oldPrice }}</span>
                     </div>
+                    <div class="cartcontrol-wrapper">
+                      <cartcontrol :food="food"></cartcontrol>
+                    </div>
                   </div>
                 </li>
               </ul>
            </li>
-         </ul>
+         </ul> 
        </div>
-      <shopcart :delivery-price="seller.deliveryPrice":min-price="seller.minPrice"></shopcart>
+      <shopcart :selectFoods="selectFoods" :delivery-price="seller.deliveryPrice":min-price="seller.minPrice"></shopcart>
     </div>
 </template>
 
 <script>
   import BScroll from 'better-scroll'
   import shopcart from '../shopcart/shopcart.vue'
+  import cartcontrol from '../cartcontrol/cartcontrol.vue'
+
   const ERR_OK = 0
   export default {
     props:{
@@ -56,13 +61,15 @@ Description
       }
     },
     components:{
-      shopcart
+      shopcart,
+      cartcontrol
     },
     data(){
       return {
         goods:[],
         listHeight:[],
-        scrollY:0
+        scrollY:0,
+        selectedFood:{}
       }
     },
     computed:{
@@ -75,6 +82,17 @@ Description
           }
         }
         return 0
+      },
+      selectFoods(){
+        let foods = [];
+        this.goods.forEach((good)=>{
+          good.foods.forEach((food)=>{
+            if(food.count){
+              foods.push(food)
+            }
+          })
+        })
+        return foods
       }
     },
     created(){
@@ -98,6 +116,7 @@ Description
           click:true
         });
         this.foodsScroll = new BScroll(this.$refs.food,{
+          click:true,
           probeType:3
         });
 
@@ -228,6 +247,10 @@ Description
                 text-decoration:line-through
                 font-size:10px
                 color:rgb(147,153,159)
+            .cartcontrol-wrapper
+              position:absolute
+              right:0
+              bottom:12px
 
 </style>
 
