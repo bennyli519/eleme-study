@@ -20,8 +20,6 @@
 
 <script>
 import eleHeader from './components/header/header'
- import Vue from 'vue'
-let Hub = new Vue()
 const ERR_OK = 0
 export default {
   name: 'app',
